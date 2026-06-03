@@ -520,3 +520,69 @@ h2 {
         margin-bottom: 12px;
     }
 }
+
+/* ==========================================================================
+   スマホ・タブレット用のレスポンシブ表示調整（追記）
+   ========================================================================== */
+@media (max-width: 768px) {
+    /* 1. ナビゲーションの改行対策（ヘッダー全体を縦並びにしてスッキリさせる） */
+    header .container.flex-between {
+        flex-direction: column;
+        gap: 15px;
+        padding: 15px 20px;
+    }
+    header .logo-wrapper {
+        align-items: center; /* スマホではロゴを中央寄せに */
+    }
+    nav {
+        display: flex;
+        justify-content: center;
+        width: 100%;
+        gap: 10px;
+    }
+    nav a {
+        margin-left: 0;
+        font-size: 0.85rem;
+        padding: 5px 8px;
+        background: #f0f2f5; /* タップしやすいように薄いボタン風に */
+        border-radius: 4px;
+        white-space: nowrap; /* メニュー自体が絶対に改行されないように */
+    }
+
+    /* 2. ヒーローのH1、各セクションのH2のサイズ調整 */
+    #hero h1 {
+        font-size: 1.8rem !important; /* スマホに合わせた適切なサイズに縮小 */
+        line-height: 1.4;
+    }
+    h2 {
+        font-size: 1.5rem !important; /* パソコン用の2remからスマホ用に最適化 */
+        margin-bottom: 20px;
+    }
+
+    /* 3. 表（テーブル）の中の文字を自然な位置で改行させる調整 */
+    .comparison-table, .ticket-needed-table {
+        font-size: 0.8rem !important; /* 文字サイズをわずかに小さくして枠内に収める */
+    }
+    .comparison-table th, .comparison-table td,
+    .ticket-needed-table th, .ticket-needed-table td {
+        padding: 10px 6px !important; /* 内側の余白を狭めて横幅を確保 */
+        word-break: break-all;        /* 枠線に合わせて自動で優しく改行 */
+    }
+    
+    /* 強調表示している太字（strong）もスマホで自然に折り返す */
+    .comparison-table td strong {
+        display: inline-block;
+        text-align: center;
+        width: 100%;
+    }
+
+    /* 4. ご利用の流れ（ステップ）のスマホ表示最適化 */
+    .flow-steps {
+        flex-direction: column;
+        gap: 20px;
+    }
+    .step {
+        width: 100%;
+        padding: 10px 0;
+    }
+}
