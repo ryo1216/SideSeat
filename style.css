@@ -522,61 +522,62 @@ h2 {
 }
 
 /* ==========================================================================
-   スマホ・タブレット用のレスポンシブ表示調整（追記）
+   スマホ・タブレット用のレスポンシブ表示調整（スマホナビ非表示・ロゴ左寄せ）
    ========================================================================== */
 @media (max-width: 768px) {
-    /* 1. ナビゲーションの改行対策（ヘッダー全体を縦並びにしてスッキリさせる） */
+    /* 1. ヘッダー全体の上下余白を薄くしてコンパクトに */
+    header {
+        padding: 12px 0 !important;
+    }
+    
+    /* 2. 横並びの配置を維持（ナビが消えるのでロゴだけが左上に残ります） */
     header .container.flex-between {
-        flex-direction: column;
-        gap: 15px;
-        padding: 15px 20px;
-    }
-    header .logo-wrapper {
-        align-items: center; /* スマホではロゴを中央寄せに */
-    }
-    nav {
-        display: flex;
-        justify-content: center;
-        width: 100%;
-        gap: 10px;
-    }
-    nav a {
-        margin-left: 0;
-        font-size: 0.85rem;
-        padding: 5px 8px;
-        background: #f0f2f5; /* タップしやすいように薄いボタン風に */
-        border-radius: 4px;
-        white-space: nowrap; /* メニュー自体が絶対に改行されないように */
+        flex-direction: row !important;
+        justify-content: flex-start !important; /* 左寄せにする */
+        padding: 0 20px !important;
     }
 
-    /* 2. ヒーローのH1、各セクションのH2のサイズ調整 */
+    /* 3. 左上のロゴエリアのスマホ向けサイズ調整 */
+    .logo-wrapper {
+        align-items: flex-start !important;
+    }
+    .logo-sub {
+        font-size: 0.6rem !important;
+        margin-bottom: 3px !important;
+    }
+    .logo {
+        font-size: 1.5rem !important; /* スマホで上品に見えるフォントサイズ */
+    }
+
+    /* 4. 💡 スマホ画面の時だけ、ナビゲーションメニューを完全に非表示（消去）にする */
+    nav {
+        display: none !important; /* これでメニュー4つが画面から消えます */
+    }
+
+    /* ==========================================
+       以下、H1・H2や表などの崩れ対策（変更なし）
+       ========================================== */
     #hero h1 {
-        font-size: 1.8rem !important; /* スマホに合わせた適切なサイズに縮小 */
+        font-size: 1.8rem !important;
         line-height: 1.4;
     }
     h2 {
-        font-size: 1.5rem !important; /* パソコン用の2remからスマホ用に最適化 */
+        font-size: 1.5rem !important;
         margin-bottom: 20px;
     }
-
-    /* 3. 表（テーブル）の中の文字を自然な位置で改行させる調整 */
     .comparison-table, .ticket-needed-table {
-        font-size: 0.8rem !important; /* 文字サイズをわずかに小さくして枠内に収める */
+        font-size: 0.8rem !important;
     }
     .comparison-table th, .comparison-table td,
     .ticket-needed-table th, .ticket-needed-table td {
-        padding: 10px 6px !important; /* 内側の余白を狭めて横幅を確保 */
-        word-break: break-all;        /* 枠線に合わせて自動で優しく改行 */
+        padding: 10px 5px !important;
+        word-break: break-all;
     }
-    
-    /* 強調表示している太字（strong）もスマホで自然に折り返す */
     .comparison-table td strong {
         display: inline-block;
         text-align: center;
         width: 100%;
     }
-
-    /* 4. ご利用の流れ（ステップ）のスマホ表示最適化 */
     .flow-steps {
         flex-direction: column;
         gap: 20px;
@@ -586,3 +587,24 @@ h2 {
         padding: 10px 0;
     }
 }
+
+/* 7. 表（テーブル）の中の文字を自然な位置で改行させる調整 */
+    .comparison-table, .ticket-needed-table {
+        font-size: 0.78rem !important;  /* 💡 文字をほんの少しだけスマートにして枠内に収まりやすく */
+    }
+    .comparison-table th, .comparison-table td,
+    .ticket-needed-table th, .ticket-needed-table td {
+        padding: 8px 4px !important;    /* 💡 左右の余白を極限まで削って、文字が入る横幅を最大化 */
+        
+        /* 👇 ここが重要なポイントです！ */
+        word-break: normal !important;   /* どこでも強制改行するのをやめる */
+        overflow-wrap: anywhere !important; /* 基本は単語単位で改行。どうしても入らない時だけ端で折る */
+    }
+    
+    /* 表の中の太字（strong）や特定のまとまりがバラバラに砕けないようにする */
+    .comparison-table td strong {
+        display: inline-block;
+        text-align: center;
+        width: 100%;
+        white-space: nowrap; /* 💡 「週1回」や「〇〇円」などの重要な言葉が途中で改行されるのを防ぐ */
+    }
