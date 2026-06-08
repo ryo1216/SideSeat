@@ -613,3 +613,80 @@ h2 {
     display: inline;
   }
 }
+
+/* 2. チケット枚数表の下に置く特典ボックス */
+.ticket-bonus-box {
+    background-color: #fcf8f2; /* 💡 ほんのり温かみのある薄いベージュ */
+    border: 1px solid var(--accent);
+    border-radius: 8px;
+    padding: 1.5rem;
+    max-width: 600px;
+    margin: 25px auto 0 auto; /* 💡 表と同じ幅（max-width:600px）で中央寄せ */
+    text-align: center;
+    font-family: 'Noto Serif JP', serif; /* 💡 信頼感を与える美しい明朝体 */
+    box-shadow: 0 4px 15px rgba(0,0,0,0.02);
+}
+
+/* 特典ラベル */
+.bonus-header {
+    margin-bottom: 0.8rem;
+}
+.bonus-label {
+    background-color: var(--accent);
+    color: var(--primary);
+    font-size: 0.75rem;
+    font-weight: bold;
+    padding: 3px 10px;
+    letter-spacing: 0.05em;
+    border-radius: 3px;
+    font-family: 'Noto Sans JP', sans-serif;
+}
+
+/* メインメッセージ */
+.bonus-message {
+    color: var(--text);
+    font-size: 1.1rem;
+    line-height: 1.6;
+    margin: 0 0 0.6rem 0;
+    font-weight: bold;
+}
+
+/* 「3枚無料」の強調 */
+.bonus-highlight {
+    font-size: 1.35rem;
+    color: #d9534f; /* 💡 知的なイメージを損なわない、深みのある上品な赤 */
+    border-bottom: 2px solid #d9534f;
+    padding-bottom: 1px;
+    display: inline-block;
+}
+
+/* 補足説明（小さめの文字） */
+.bonus-caption {
+    color: #666;
+    font-size: 0.78rem;
+    margin: 0;
+    font-family: 'Noto Sans JP', sans-serif;
+}
+
+/* スマホ表示の際の微調整 */
+@media (max-width: 768px) {
+    .hero-bonus-tag {
+        font-size: 0.75rem;
+        padding: 4px 10px;
+        margin-top: 10px;
+        line-height: 1.4;
+    }
+    .ticket-bonus-box {
+        padding: 1.2rem 1rem;
+        margin-top: 20px;
+    }
+    .bonus-message {
+        font-size: 0.95rem;
+    }
+    .bonus-highlight {
+        font-size: 1.15rem;
+    }
+    .bonus-caption {
+        font-size: 0.72rem;
+    }
+}
